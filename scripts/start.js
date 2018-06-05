@@ -1,3 +1,4 @@
+/* eslint-diable no-console */
 'use strict';
 
 // Do this as the first thing so that any code reading it knows the right env.
@@ -52,21 +53,10 @@ if (process.env.HOST) {
     console.log(
         `If this was unintentional, check that you haven't mistakenly set it in your shell.`
     );
-    console.log(
-        `Learn more here: ${chalk.yellow('http://bit.ly/CRA-advanced-config')}`
-    );
     console.log();
 }
 
-// We require that you explictly set browsers and do not fall back to
-// browserslist defaults.
-const { checkBrowsers } = require('./utils/browsersHelper');
-checkBrowsers(paths.appPath)
-    .then(() => {
-        // We attempt to use the default port but if it is busy, we offer the user to
-        // run on a different port. `choosePort()` Promise resolves to the next free port.
-        return choosePort(HOST, DEFAULT_PORT);
-    })
+choosePort(HOST, DEFAULT_PORT)
     .then(port => {
         if (port == null) {
             // We have not found a port.
