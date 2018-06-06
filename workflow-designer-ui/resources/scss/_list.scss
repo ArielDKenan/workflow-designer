@@ -1,0 +1,100 @@
+.list-view {
+  @extend .flex-column;
+  background-color: $content-background-color;
+
+  .list-view-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid $light-gray;
+    padding-bottom: 5px;
+    .list-view-title {
+      @extend .heading-3-semibold;
+    }
+  }
+
+  .list-view-list-scroller {
+    @extend .flex;
+    overflow: auto;
+    margin: 18px 0 30px 0;
+  }
+
+  .list-view-list {
+    @extend .flex-column;
+
+    .list-item-view {
+      margin: 8px 0;
+      border: 1px solid $light-gray;
+      background-color: $white;
+      display: flex;
+      min-height: 100px;
+      overflow: hidden;
+      .list-item-view-content {
+        padding: 10px 28px;
+        display: flex;
+        flex: 1 1;
+        .list-item-view-field {
+          flex: 1 1;
+          color: $black;
+          padding: 0;
+          @include ellipsis;
+          overflow-wrap: break-word;
+          white-space: initial;
+
+
+          .number-field {
+            align-content: center;
+          }
+          .title {
+            @extend .body-1;
+            padding-bottom: 5px;
+            &:not(:first-child) {
+              line-height: 0.9;
+            }
+          }
+          .description {
+            @include multiline-ellipsis(1.3em, 3);
+          }
+          .text {
+            @extend .body-1;
+          }
+          .textEllipses {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            padding-right: 5px;
+          }
+        }
+      }
+      .list-item-view-controller {
+        display: flex;
+        flex-basis: 5%;
+        align-self: center;
+        justify-content: center;
+        flex-direction: column;
+        .svg-icon-wrapper {
+          &:first-child {
+            margin-bottom: 10px;
+          }
+        }
+        .svg-icon {
+          margin-top: 5px;
+          transition: fill .3s;
+          fill: $white;
+        }
+      }
+      &.selectable:hover{
+        @extend .box-hover;
+        cursor: pointer;
+        .list-item-view-controller {
+          .svg-icon {
+            fill: $dark-gray;
+            &:hover {
+              fill: $black;
+            }
+          }
+        }
+      }
+    }
+  }
+}
